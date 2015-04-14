@@ -7,14 +7,27 @@ Simple little responsive Sass grid with 12 columns.
 $ bower install little-grid
 ```
 
+## Use ##
+
+```sass
+// main.scss
+
+// use my own variables
+$siteMaxWidth: 1024px;
+$littleGridNamespace: "lg-";
+
+@import "bower_components/little-grid/little-grid"
+```
+
 ## Variables ##
 You can set these variables:
 
 * $columns -- number of columns
 * $siteMaxWidth -- width of the site. Used to calculate the row max width.
 * $columnGutter -- size of the space between columns
+* $littleGridNamespace -- a prefix to use on all class names
 
-Example:
+Markup Example:
 
 ```html
 <!-- grid -->
@@ -26,7 +39,7 @@ Example:
 </div>
 ```
 
-Use `.row-uniform` if all columns are equal width.
+Use `.row-uniform` when all columns are equal width
 
 ```html
 <div class="wrapper">

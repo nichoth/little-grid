@@ -4,10 +4,12 @@
 
 @import "../silent-clearfix/silent-clearfix";
 
-$columns:       12!default;
-$columnGutter:  30px!default;
-$siteMaxWidth:  1206px!default;
-$rowMaxWidth:   ($siteMaxWidth - ($columnGutter * 2))!default;
+$littleGridNamespace: "" !default;
+
+$columns:       12 !default;
+$columnGutter:  30px !default;
+$siteMaxWidth:  1206px !default;
+$rowMaxWidth:   ($siteMaxWidth - ($columnGutter * 2)) !default;
 
 // Returns the width property for an element given the number of
 // columns that it spans.
@@ -18,14 +20,14 @@ $rowMaxWidth:   ($siteMaxWidth - ($columnGutter * 2))!default;
   @return percentage($width / $rowMaxWidth);
 }
 
-.wrapper {
+.#{$littleGridNamespace}wrapper {
   position: relative;
   margin: 0 auto;
   padding: 0 1em;
   max-width: $siteMaxWidth;
 }
 
-.row {
+.#{$littleGridNamespace}row {
   @extend %clearfix;
   max-width: $rowMaxWidth;
   width: 100%;
@@ -35,8 +37,8 @@ $rowMaxWidth:   ($siteMaxWidth - ($columnGutter * 2))!default;
 
 // All columns are the same size.
 // Auto remove margin from last elmt in row.
-.row-uniform {
-  @extend .row;
+.#{$littleGridNamespace}row-uniform {
+  @extend .#{$littleGridNamespace}row;
   .span1:nth-child(12n),
   .span2:nth-child(6n),
   .span3:nth-child(4n),
@@ -47,18 +49,18 @@ $rowMaxWidth:   ($siteMaxWidth - ($columnGutter * 2))!default;
   }
 }
 
-.span1,
-.span2,
-.span3,
-.span4,
-.span5,
-.span6,
-.span7,
-.span8,
-.span9,
-.span10,
-.span11,
-.span12
+.#{$littleGridNamespace}span1,
+.#{$littleGridNamespace}span2,
+.#{$littleGridNamespace}span3,
+.#{$littleGridNamespace}span4,
+.#{$littleGridNamespace}span5,
+.#{$littleGridNamespace}span6,
+.#{$littleGridNamespace}span7,
+.#{$littleGridNamespace}span8,
+.#{$littleGridNamespace}span9,
+.#{$littleGridNamespace}span10,
+.#{$littleGridNamespace}span11,
+.#{$littleGridNamespace}span12
 {
   margin-right: percentage($columnGutter / $rowMaxWidth);
   float: left;
@@ -72,7 +74,7 @@ $rowMaxWidth:   ($siteMaxWidth - ($columnGutter * 2))!default;
   margin-right: 0;
 }
 
-.last {
+.#{$littleGridNamespace}last {
   @extend %last;
 }
 
@@ -82,7 +84,7 @@ $rowMaxWidth:   ($siteMaxWidth - ($columnGutter * 2))!default;
 \*------------------------------------*/
 // make the columns
 @for $i from 1 through $columns {
-  .row .span#{$i} {
+  .#{$littleGridNamespace}row .#{$littleGridNamespace}span#{$i} {
     width: makeColumn($columns, $columnGutter, $rowMaxWidth, $i);
   }
 }
@@ -105,7 +107,7 @@ $rowMaxWidth:   ($siteMaxWidth - ($columnGutter * 2))!default;
 $colWidth: ($rowMaxWidth + $columnGutter) / $columns;
 
 @for $i from 1 to $columns {
-  .row .offset#{$i} {
+  .#{$littleGridNamespace}row .#{$littleGridNamespace}offset#{$i} {
     padding-left: percentage($colWidth * $i / $rowMaxWidth);
   }
 }
