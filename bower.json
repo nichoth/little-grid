@@ -1,0 +1,26 @@
+{
+  "name": "little-grid",
+  "version": "0.0.0",
+  "authors": [
+    "nichoth <nichoth@gmail.com>"
+  ],
+  "description": "Simple SASS responsive grid",
+  "main": "_little-grid.scss",
+  "keywords": [
+    "sass",
+    "grid",
+    "responsive"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/nichoth/little-grid",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "silent-clearfix": "*"
+  }
+}

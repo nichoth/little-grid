@@ -1,0 +1,121 @@
+/*------------------------------------*\
+    $GRID BASICS
+\*------------------------------------*/
+
+@import "bower_components/silent-clearfix/silent-clearfix";
+
+$columns:       12!default;
+$columnGutter:  30px!default;
+$siteMaxWidth:  1206px!default;
+$rowMaxWidth:   ($siteMaxWidth - ($columnGutter * 2))!default;
+
+// Returns the width property for an element given the number of
+// columns that it spans.
+@function makeColumn($nColumns, $gutter, $rowMaxWidth, $span) {
+  $totalGutter: ($gutter * ($nColumns - 1));  // total gutter space
+  $colWidth: ($rowMaxWidth - $totalGutter) / $nColumns;
+  $width: $colWidth * $span + ($gutter * ($span - 1));
+  @return percentage($width / $rowMaxWidth);
+}
+
+.wrapper {
+  position: relative;
+  margin: 0 auto;
+  padding: 0 1em;
+  max-width: $siteMaxWidth;
+}
+
+.row {
+  @extend %clearfix;
+  max-width: $rowMaxWidth;
+  width: 100%;
+  margin: 0px auto;
+  padding: 50px 0;
+}
+
+// All columns are the same size.
+// Auto remove margin from last elmt in row.
+.row-uniform {
+  @extend .row;
+  .span1:nth-child(12n),
+  .span2:nth-child(6n),
+  .span3:nth-child(4n),
+  .span4:nth-child(3n),
+  .span6:nth-child(2n),
+  .span12 {
+    margin-right: 0;
+  }
+}
+
+.span1,
+.span2,
+.span3,
+.span4,
+.span5,
+.span6,
+.span7,
+.span8,
+.span9,
+.span10,
+.span11,
+.span12
+{
+  margin-right: percentage($columnGutter / $rowMaxWidth);
+  float: left;
+  min-height: 1px;
+  img {
+    max-width: 100%;
+  }
+}
+
+%last {
+  margin-right: 0;
+}
+
+.last {
+  @extend %last;
+}
+
+
+/*------------------------------------*\
+    $COLUMNS
+\*------------------------------------*/
+// make the columns
+@for $i from 1 through $columns {
+  .row .span#{$i} {
+    width: makeColumn($columns, $columnGutter, $rowMaxWidth, $i);
+  }
+}
+
+// Output:
+//
+// .row .span1 {
+//   width: 5.93368%; }
+//
+// .row .span2 {
+//   width: 14.48517%; }
+//
+// etc...
+
+
+
+/*------------------------------------*\
+    $OFFSETS
+\*------------------------------------*/
+$colWidth: ($rowMaxWidth + $columnGutter) / $columns;
+
+@for $i from 1 to $columns {
+  .row .offset#{$i} {
+    padding-left: percentage($colWidth * $i / $rowMaxWidth);
+  }
+}
+
+
+// Output:
+// .row .offset1 {
+//   padding-left: 8.55148%; }
+//
+// .row .offset2 {
+//   padding-left: 17.10297%; }
+//
+// etc...
