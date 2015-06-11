@@ -21,6 +21,6 @@
     "tests"
   ],
   "dependencies": {
-    "silent-clearfix": "*"
+    "silent-clearfix": "https://github.com/nichoth/silent-clearfix/tarball/master"
   }
 }
